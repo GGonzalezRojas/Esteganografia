@@ -26,7 +26,7 @@ def Menu():
 	if "darwin" in sys.platform:
 		os.system("clear")
 	elif "win" in sys.platform:
-		os.system("cls") 
+		os.system("cls")
 	print ("Selecciona una opcion")
 	print ("\t1 - Codificar mensaje")
 	print ("\t2 - Decodificar mensaje")
@@ -70,7 +70,7 @@ def ComprobarTamaño(mensaje_binario, matriz_imagen):
 	#guardaremos un bit por pixel por lo cual :
 	nfilas, ncolumnas, _ = matriz_imagen.shape
 	pixeles_imagen = nfilas * ncolumnas
-	#print(pixeles_imagen)
+	#print(pixeles_imagen) // Para testear el estado del pixel.
 	if bits_binario < pixeles_imagen:
 		return True
 	else:
@@ -90,12 +90,12 @@ def ImagenBinaria(image, m, n):
 	text_ext=""
 	for x in range (0, m):
 		for y in range (0, n):
-			for h in range (0,3): 
+			for h in range (0,3):
 				text_ext += str(EnteroBinario(image[x,y][h]))[-1]
-	return text_ext	
+	return text_ext
 
 #Almacena el secreto obtenido de la imagen (mensaje) en un txt
-#para poder verlo
+#para poder visualizarlo como archivo externo.
 def MostrarSecreto(dato):
 	salida=open("mensaje_deco.txt","w")
 	salida.write(dato)
@@ -125,7 +125,7 @@ def Codificar(mensaje_binario, matriz_imagen):
 					copy[h] = int(Secreto(color_pixel_binario, info[0]), 2)
 					matriz_imagen[x][y] = tuple(copy)
 					info = info[1:]
-					
+
 				else:
 					break
 	print("#Guardando imagen procesada 			...[+]")
@@ -140,7 +140,7 @@ def Decodificar(matriz_imagen):
 	img_bin = ImagenBinaria(matriz_imagen, tamx, tamy)
 	search = img_bin.find(firma)
 	if search != -1:
-			
+
 			print("#Firma Encontrada			...[+]")
 			bsize = img_bin[:search]
 			size = int(bsize,2)
@@ -149,7 +149,7 @@ def Decodificar(matriz_imagen):
 			salida = ""
 			letra = ""
 			print("#Extrayendo Datos 			...[+]")
-			
+
 			for i in range (0, int(n)):
 				letra = img_bin[0:8]
 				salida += chr(int(letra,2))
@@ -165,7 +165,7 @@ def Decodificar(matriz_imagen):
 			salida = ""
 			letra = ""
 			print("#Extrayendo Datos 			...[+]")
-			
+
 			for i in range (0, int(n)):
 				letra = img_bin[0:8]
 				salida += chr(int(letra,2))
@@ -178,10 +178,10 @@ def Decodificar(matriz_imagen):
 while True:
 	# Mostramos el Menu
 	Menu()
- 
+
 	# solicitamos una opcion al usuario
 	opcionMenu = input("inserta un numero valor >> ")
- 
+
 	if opcionMenu=="1":
 		print ("")
 		input("Has pulsado la opcion 1...\npulsa enter para continuar")
@@ -224,6 +224,3 @@ while True:
 	else:
 		print ("")
 		input("No has pulsado ninguna opcion correcta...\npulsa enter para continuar")
-
-
-
