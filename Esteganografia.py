@@ -46,7 +46,6 @@ def MensajeBinario(mensaje):
 		temp = temp[2:]
 		largo = len(temp)
 		palabraBin = palabraBin + "0" * (8 - largo) + temp
-		print "Hola"
 	return palabraBin
 
 #Funcion hace el traspaso desde un int hacia binario
