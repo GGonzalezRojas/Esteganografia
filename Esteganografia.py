@@ -46,6 +46,7 @@ def MensajeBinario(mensaje):
 		temp = temp[2:]
 		largo = len(temp)
 		palabraBin = palabraBin + "0" * (8 - largo) + temp
+		print "Hola"
 	return palabraBin
 
 #Funcion hace el traspaso desde un int hacia binario
@@ -115,12 +116,18 @@ def Codificar(mensaje_binario, matriz_imagen):
 	nfilas,ncolumnas,_ =  matriz_imagen.shape
 	print("#Ocultando datos 			...[+]")
 	sleep(2)
+	#Se genera un ciclo que se mueve en las 2 dimensiones de la imagen
+	#con esto nos moveremos en cada pixel y en cada elemento de RGB,
 	for x in range(0,nfilas):
 		for y in range(0,ncolumnas):
 			for h in range(0,3):
 				if len(info) != 0:
+					#Se posiciona en pixel
 					color_pixel = matriz_imagen[x][y][h]
+					#Ese pixel se procesa a binario
 					color_pixel_binario = EnteroBinario(color_pixel)
+					#Se realiza una copia de este y se trabaja con la copia
+					#de esta forma que los cambios sean efectivos.
 					copy = list(matriz_imagen[x][y])
 					copy[h] = int(Secreto(color_pixel_binario, info[0]), 2)
 					matriz_imagen[x][y] = tuple(copy)
